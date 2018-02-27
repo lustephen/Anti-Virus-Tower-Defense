@@ -8,6 +8,9 @@ public class LevelManager : MonoBehaviour {
     [SerializeField]    //Can acces from inspector
     private GameObject[] tilePrefabs;
 
+	[SerializeField]
+	private GameObject pauseMenu;
+
     [SerializeField]
     private CameraMovement cameraMovement;
 
@@ -83,6 +86,16 @@ public class LevelManager : MonoBehaviour {
         return data.Split('-');     //Splits text document when reading "-"
     }
 
+	private void HandleEscape()
+	{
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			showPauseMenu ();
+		}
+	}
 
-   
+	public void showPauseMenu()
+	{
+		pauseMenu.SetActive(!pauseMenu.activeSelf);
+
+	}
 }
