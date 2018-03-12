@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.Collections.Generic;   //dictionary 
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
@@ -8,8 +8,13 @@ public class LevelManager : MonoBehaviour {
     [SerializeField]    //Can acces from inspector
     private GameObject[] tilePrefabs;
 
+	[SerializeField]
+	private GameObject pauseMenu;
+
     [SerializeField]
     private CameraMovement cameraMovement;
+
+    public Dictionary<Point, TileScript> Tiles { get; set; }
 
     public float TileSize
     {
@@ -32,6 +37,8 @@ public class LevelManager : MonoBehaviour {
 
     private void CreateLevel()
     {
+        Tiles = new Dictionary<Point, TileScript>();    //Allcate memory for tile grid dictionary
+
         string[] mapData = ReadLevelText();
 
         int mapX = mapData[0].ToCharArray().Length; //Length of each element in mapData
@@ -48,15 +55,16 @@ public class LevelManager : MonoBehaviour {
 
             for (int x = 0; x < mapX; x++) //X 
             {
-                maxTile = PlaceTile(newTiles[x].ToString(), x, y, worldStart);    //Places Tiles Accordingly to Level.txt
+               PlaceTile(newTiles[x].ToString(), x, y, worldStart);    //Places Tiles Accordingly to Level.txt
          
             }
         }
 
+        maxTile = Tiles[new Point(mapX - 1, mapY - 1)].transform.position;      //Finding Max Tile (Bottom Right) through Dictionary
         cameraMovement.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
     }
 
-    private Vector3 PlaceTile(string tileType, int x, int y, Vector3 worldStart)   //Places Tiles Accordingly to Level.txt
+    private void PlaceTile(string tileType, int x, int y, Vector3 worldStart)   //Places Tiles Accordingly to Level.txt
     {
         int tileIndex = int.Parse(tileType);    //Pass tiletype:string to tileIndex:int
         TileScript newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<TileScript>();   //New Object Tile
@@ -64,7 +72,9 @@ public class LevelManager : MonoBehaviour {
         //Places tile According Right/Left, Top/Down
 
         newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0));
-        return newTile.transform.position;  //Returns Value for maxTile
+        
+
+        Tiles.Add(new Point(x, y), newTile);
     }
 
     private string[] ReadLevelText()
@@ -76,4 +86,16 @@ public class LevelManager : MonoBehaviour {
         return data.Split('-');     //Splits text document when reading "-"
     }
 
+	private void HandleEscape()
+	{
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			showPauseMenu ();
+		}
+	}
+
+	public void showPauseMenu()
+	{
+		pauseMenu.SetActive(!pauseMenu.activeSelf);
+
+	}
 }

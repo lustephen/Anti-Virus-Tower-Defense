@@ -47,7 +47,7 @@ public class CameraMovement : MonoBehaviour {
         }
 
         //Sets Limit on Camera Movement
-       // transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, xMax), Mathf.Clamp(transform.position.y, yMin, 0), -10);
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, xMax), Mathf.Clamp(transform.position.y, yMin, 0), -10);
 
     }
 
