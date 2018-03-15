@@ -16,6 +16,8 @@ public class LevelManager : MonoBehaviour {
 
     public Dictionary<Point, TileScript> Tiles { get; set; }
 
+    private enum TileType { EMPTY, PATH, WAYPOINT, SPAWNPOINT };
+
     public float TileSize
     {
        get
@@ -23,6 +25,8 @@ public class LevelManager : MonoBehaviour {
             return tilePrefabs[0].GetComponent<SpriteRenderer>().sprite.bounds.size.x;
         }
     }
+
+    public static Vector3 spawnPoint;
 
 	// Use this for initialization
 	void Start () {
@@ -68,11 +72,33 @@ public class LevelManager : MonoBehaviour {
     {
         int tileIndex = int.Parse(tileType);    //Pass tiletype:string to tileIndex:int
         TileScript newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<TileScript>();   //New Object Tile
+        TileType type = (TileType)tileIndex;
 
+        Vector3 position = new Vector3(
+            worldStart.x + (TileSize * x),
+            worldStart.y - (TileSize * y),
+            0);
         //Places tile According Right/Left, Top/Down
-
+        switch (type)
+        {
+            case TileType.EMPTY:
+            case TileType.PATH:
+                newTile.Setup(new Point(x, y), position);
+                break;
+            case TileType.WAYPOINT:
+                newTile.Setup(new Point(x, y), position, true);
+                break;
+            case TileType.SPAWNPOINT:
+                // center spawn point
+                spawnPoint = new Vector3(position.x + (TileSize / 2), position.y - (TileSize / 2), 0);
+                newTile.Setup(new Point(x, y), position, false, true);
+                break;
+            default:
+                Debug.LogError("UNKNOWN TILE TYPE: " + tileIndex.ToString());
+                break;
+        }
         newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0));
-        
+        //Debug.Log(new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0));
 
         Tiles.Add(new Point(x, y), newTile);
     }
