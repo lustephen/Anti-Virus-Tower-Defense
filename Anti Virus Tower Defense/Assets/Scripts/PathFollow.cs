@@ -5,12 +5,12 @@ using UnityEngine;
 public class PathFollow : MonoBehaviour {
 
     // Use this for initialization
-    public float speed = 3.0f;
+    private float speed;
 
     private List<Vector3> waypoints = LevelManager.waypoints;
     private int nextPoint = 0;
 	void Start () {
-        Debug.Log(waypoints.Count);
+        speed = gameObject.GetComponent<Enemy>().speed;
 	}
 	
 	// Update is called once per frame
@@ -29,13 +29,14 @@ public class PathFollow : MonoBehaviour {
         }
         else
         {
+            GameState.towerHealth -= 5;
             Destroy(gameObject);
         }
     }
 
     bool hitMarker(Vector3 position, Vector3 waypoint)
     {
-        float tolerance = 0.03f;
+        float tolerance = 0.05f;
         Vector3 dif = waypoint - position;
         dif = new Vector3(dif.x, dif.y, 0);
         if (dif.magnitude <= tolerance)

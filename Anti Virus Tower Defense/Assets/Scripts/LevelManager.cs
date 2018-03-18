@@ -23,21 +23,19 @@ public class LevelManager : MonoBehaviour {
             return tilePrefabs[0].GetComponent<SpriteRenderer>().sprite.bounds.size.x;
         }
     }
-    private enum TileType { EMPTY, PATH, WAYPOINT, SPAWNPOINT };
-    public static Vector3 spawnPoint;
+    private enum TileType       { EMPTY, PATH, WAYPOINT, SPAWNPOINT };
+    public static Vector3       spawnPoint;
     public static List<Vector3> waypoints = new List<Vector3>();
 
 	// Use this for initialization
 	void Start () {
         //Execute Map Creation
         waypoints.Clear();
-        Debug.Log(waypoints.Count);
         CreateLevel();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
     private void CreateLevel()

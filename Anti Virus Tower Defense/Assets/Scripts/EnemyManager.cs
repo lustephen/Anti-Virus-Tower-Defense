@@ -25,7 +25,6 @@ public class EnemyManager : MonoBehaviour {
 
     void spawnEnemy()
     {
-        Debug.Log("Spawning new enemy!");
         Vector3 spawnPoint = LevelManager.spawnPoint;
         GameObject enemy = Instantiate(enemyPrefabs[0], spawnPoint, Quaternion.identity);
         enemy.layer = 1;
