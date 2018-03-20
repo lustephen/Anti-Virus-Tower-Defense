@@ -955,6 +955,13 @@ MonoBehaviour:
   - {fileID: 1939428826706518, guid: ce2304c0d4226ee4daacd2211be1dc9b, type: 2}
   - {fileID: 1596755708918606, guid: 465aece65cb345a468a7f8659667664f, type: 2}
   - {fileID: 1518919068630198, guid: f23258b775810c3468421fbc857df7df, type: 2}
+  - {fileID: 1781495029256550, guid: e0d2031be21fba44d8741d5b5b2c596f, type: 2}
+  - {fileID: 1144383762689778, guid: 0601d20c91fcc9344a513025693b2203, type: 2}
+  - {fileID: 1893235429263508, guid: c8c71a70ad2e2e84c8974fffb25a4d75, type: 2}
+  - {fileID: 1440769762711438, guid: ff80982622e945a459df0f703237417b, type: 2}
+  - {fileID: 1346853694410946, guid: a56f51f51959e6f4ca991376be5c5fc6, type: 2}
+  - {fileID: 1550927143663040, guid: 3fb12b09edd34184cbfdd16c3b336f5e, type: 2}
+  - {fileID: 1495321612429502, guid: 360a2a7bc12f0834695dca1a1b3931d4, type: 2}
   pauseMenu: {fileID: 0}
   cameraMovement: {fileID: 479343494}
 --- !u!4 &1276880848
