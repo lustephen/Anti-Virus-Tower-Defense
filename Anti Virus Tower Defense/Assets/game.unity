@@ -962,6 +962,15 @@ MonoBehaviour:
   - {fileID: 1346853694410946, guid: a56f51f51959e6f4ca991376be5c5fc6, type: 2}
   - {fileID: 1550927143663040, guid: 3fb12b09edd34184cbfdd16c3b336f5e, type: 2}
   - {fileID: 1495321612429502, guid: 360a2a7bc12f0834695dca1a1b3931d4, type: 2}
+  - {fileID: 1495321612429502, guid: 360a2a7bc12f0834695dca1a1b3931d4, type: 2}
+  - {fileID: 1495321612429502, guid: 360a2a7bc12f0834695dca1a1b3931d4, type: 2}
+  - {fileID: 1495321612429502, guid: 360a2a7bc12f0834695dca1a1b3931d4, type: 2}
+  - {fileID: 1495321612429502, guid: 360a2a7bc12f0834695dca1a1b3931d4, type: 2}
+  - {fileID: 1495321612429502, guid: 360a2a7bc12f0834695dca1a1b3931d4, type: 2}
+  - {fileID: 1495321612429502, guid: 360a2a7bc12f0834695dca1a1b3931d4, type: 2}
+  - {fileID: 1495321612429502, guid: 360a2a7bc12f0834695dca1a1b3931d4, type: 2}
+  - {fileID: 1495321612429502, guid: 360a2a7bc12f0834695dca1a1b3931d4, type: 2}
+  - {fileID: 1495321612429502, guid: 360a2a7bc12f0834695dca1a1b3931d4, type: 2}
   pauseMenu: {fileID: 0}
   cameraMovement: {fileID: 479343494}
 --- !u!4 &1276880848
