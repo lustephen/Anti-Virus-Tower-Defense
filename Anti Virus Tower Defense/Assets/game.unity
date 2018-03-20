@@ -141,8 +141,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 1464222244045258, guid: 1f5f53ec8e19328459e1aa0f64254284, type: 2}
-  spawnTimer: 3
+  - {fileID: 1346853694410946, guid: a56f51f51959e6f4ca991376be5c5fc6, type: 2}
+  - {fileID: 1550927143663040, guid: 3fb12b09edd34184cbfdd16c3b336f5e, type: 2}
+  - {fileID: 1495321612429502, guid: 360a2a7bc12f0834695dca1a1b3931d4, type: 2}
+  spawnTimer: 1
 --- !u!4 &8081928
 Transform:
   m_ObjectHideFlags: 0

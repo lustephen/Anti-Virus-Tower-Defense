@@ -26,7 +26,7 @@ public class EnemyManager : MonoBehaviour {
     void spawnEnemy()
     {
         Vector3 spawnPoint = LevelManager.spawnPoint;
-        GameObject enemy = Instantiate(enemyPrefabs[0], spawnPoint, Quaternion.identity);
+        GameObject enemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], spawnPoint, Quaternion.identity);
         enemy.layer = 1;
         enemyList.Add(enemy);
     }
