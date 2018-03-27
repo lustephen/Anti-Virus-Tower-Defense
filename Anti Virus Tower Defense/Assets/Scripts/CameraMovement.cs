@@ -52,12 +52,18 @@ public class CameraMovement : MonoBehaviour {
 <<<<<<< HEAD
         //Sets Limit on Camera Movement
 <<<<<<< HEAD
+<<<<<<< HEAD
         //transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, xMax), Mathf.Clamp(transform.position.y, yMin, 0), -10);
 =======
 >>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
 =======
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, xMax), Mathf.Clamp(transform.position.y, yMin, 0), -10);
 >>>>>>> parent of 81239c0... New Level Reader
+=======
+        //transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, xMax), Mathf.Clamp(transform.position.y, yMin, 0), -10);
+=======
+>>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
+>>>>>>> parent of 92141ad... Fixed Merging Files
 
     }
 

@@ -44,6 +44,12 @@ public class LevelManager : MonoBehaviour {
 
 <<<<<<< HEAD
         string[] mapData = ReadLevelText();
+<<<<<<< HEAD
+=======
+        Vector3 test = new Vector3(1, 1);
+        Debug.Log(test);
+        //string[] testmapData = ReadLevelText2();
+>>>>>>> parent of 92141ad... Fixed Merging Files
 
 <<<<<<< HEAD
         //Prints out testmapData
@@ -90,11 +96,16 @@ public class LevelManager : MonoBehaviour {
         int mapX = mapData[0].Length; //Length of each element in mapData
         int mapY = mapData.Length;  //Length of mapData    
 >>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
+<<<<<<< HEAD
 =======
         int mapX = mapData[0].ToCharArray().Length; //Length of each element in mapData
         int mapY = mapData.Length;  //Length of mapData    
 >>>>>>> parent of 81239c0... New Level Reader
 
+=======
+
+        int mapY = mapData.Length;
+>>>>>>> parent of 92141ad... Fixed Merging Files
 
         Vector3 maxTile = Vector3.zero;
 
@@ -115,12 +126,18 @@ public class LevelManager : MonoBehaviour {
 <<<<<<< HEAD
         maxTile = Tiles[new Point(mapX - 1, mapY - 1)].transform.position;      //Finding Max Tile (Bottom Right) through Dictionary
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 92141ad... Fixed Merging Files
         Debug.Log(maxTile);
 =======
         maxTile = Tiles[new Point(mapX-1, mapY-1)].transform.position;      //Finding Max Tile (Bottom Right) through Dictionary
 >>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
+<<<<<<< HEAD
 =======
 >>>>>>> parent of 81239c0... New Level Reader
+=======
+>>>>>>> parent of 92141ad... Fixed Merging Files
         cameraMovement.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
         waypoints = findWaypoints(mapData, worldStart);
     }
@@ -165,6 +182,9 @@ public class LevelManager : MonoBehaviour {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 92141ad... Fixed Merging Files
     /*private string[] ReadLevelText()    //Reads the Level.txt file
     {
         TextAsset bindData = Resources.Load("Level") as TextAsset;
