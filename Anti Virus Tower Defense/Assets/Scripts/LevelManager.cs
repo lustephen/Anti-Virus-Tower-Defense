@@ -43,15 +43,56 @@ public class LevelManager : MonoBehaviour {
         Tiles = new Dictionary<Point, TileScript>();    //Allcate memory for tile grid dictionary
 
         string[] mapData = ReadLevelText();
+        Vector3 test = new Vector3(1, 1);
+        Debug.Log(test);
+        //string[] testmapData = ReadLevelText2();
 
-        int mapX = mapData[0].ToCharArray().Length; //Length of each element in mapData
-        int mapY = mapData.Length;  //Length of mapData    
+        //Prints out testmapData
+        /*for (int x = 0; x < testmapData.Length; x++)
+        {
+            Debug.Log(testmapData[x]);
+        }*/
+        //int testmapDataSize = testmapData[0].ToCharArray().Length / 2;
+        int mapDataSize = mapData[0].ToCharArray().Length / 2;
+        //Debug.Log(mapDataSize);
+        //Read an array slot in testmapData
+        /*for (int z = 0; z < testmapData.Length; z++)
+        {
+            char[] t = testmapData[z].ToCharArray();
 
+            for (int x = 0; x < t.Length-1; x++)
+            {
+                string s1 = t[x].ToString();
+                string s2 = t[x + 1].ToString();
+                string s = s1 + s2;
+                Debug.Log(s);
+                x++;
+                int count = x / 2;
+                Debug.Log(count);
+            }
+
+            for (int x = 0; x < testmapData[0].Length-1; x++)
+            {
+              
+                Debug.Log(t[x] + t[x+1]);
+                
+            }
+        } */
+        //int mapX = mapData[0].ToCharArray().Length; //Length of each element in mapData
+        //int mapY = mapData.Length;  //Length of mapData    
+
+        //int mapX = 20;  //Fixed Columns length for double digit level
+
+        int mapX = mapDataSize;
+
+        //int mapY = mapData.Length;
+
+        int mapY = mapData.Length;
 
         Vector3 maxTile = Vector3.zero;
 
         Vector3 worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height)); //Coordinate of Top Left Corner of Camera/Screen
-        for (int y = 0; y < mapY; y++) //Y 
+        /*for (int y = 0; y < mapY; y++) //Y 
         {
             char[] newTiles = mapData[y].ToCharArray();
 
@@ -60,9 +101,26 @@ public class LevelManager : MonoBehaviour {
             {
                PlaceTile(newTiles[x].ToString(), x, y, worldStart);    //Places Tiles Accordingly to Level.txt
             }
+        }*/
+
+        for (int y = 0; y < mapY; y++)
+        {
+            char[] newTiles = mapData[y].ToCharArray();
+
+            for (int x = 0; x < newTiles.Length-1; x++)
+            {   
+                //Concatenating two chars to form double digits to use in PlaceTile function
+                string s1 = newTiles[x].ToString();
+                string s2 = newTiles[x + 1].ToString();
+                string s = s1 + s2;
+                x++;
+                int x1 = x / 2;
+                PlaceTile(s, x1, y, worldStart);
+            }
         }
 
         maxTile = Tiles[new Point(mapX - 1, mapY - 1)].transform.position;      //Finding Max Tile (Bottom Right) through Dictionary
+        Debug.Log(maxTile);
         cameraMovement.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
         findWaypoints(mapData, worldStart);
     }
@@ -100,16 +158,30 @@ public class LevelManager : MonoBehaviour {
         Tiles.Add(new Point(x, y), newTile);
     }
 
-    private string[] ReadLevelText()
+    /*private string[] ReadLevelText()    //Reads the Level.txt file
     {
         TextAsset bindData = Resources.Load("Level") as TextAsset;
-
+        //string data = bindData.text.Replace(Environment.NewLine, string.Empty);
+     
         string data = bindData.text.Replace(Environment.NewLine, string.Empty);
+
+        return data.Split('-');     //Splits text document when reading "-"
+    }*/
+
+    private string[] ReadLevelText()    //Reads the Level2.txt file
+    {
+       
+        TextAsset test = Resources.Load("Level2") as TextAsset;
+        //print(test);
+      
+
+        string data = test.text.Replace(Environment.NewLine, string.Empty).Replace(" ", string.Empty) ; //Forms into one string and eliminates spaces
+   
 
         return data.Split('-');     //Splits text document when reading "-"
     }
 
-	private void HandleEscape()
+    private void HandleEscape()
 	{
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			showPauseMenu ();
@@ -125,17 +197,26 @@ public class LevelManager : MonoBehaviour {
     private void findWaypoints(string[] mapData, Vector3 worldStart)
     {
         // copy data into 2d array
-        TileType[,] map = new TileType[mapData.Length, mapData[0].Length];
+        //Fixing based on new mapData sizes due to double digit integration
+        //TileType[,] map = new TileType[mapData.Length, mapData[0].Length];
+        int mapDataSlotLength = mapData[0].ToCharArray().Length / 2;
+        TileType[,] map = new TileType[mapData.Length, mapDataSlotLength];
         int y = 0;
         int startx, starty;
         startx = starty = 0;
         foreach (string row in mapData)
         {
             int x = 0;
-            foreach (char c in row)
+            //foreach (char c in row)
+            for (int z = 0; z <row.Length-1; z++)
             {
+                //new stuff
+                string s1 = row[z].ToString();
+                string s2 = row[z + 1].ToString();
+                string s = s1 + s2;
                 // we're gonna cheat and get the spawn point while we are copying the map
-                int tileIndex = int.Parse(c.ToString());
+                //int tileIndex = int.Parse(c.ToString());
+                int tileIndex = int.Parse(s);
                 TileType type = (TileType)tileIndex;
                 if (type == TileType.SPAWNPOINT)
                 {
@@ -144,6 +225,8 @@ public class LevelManager : MonoBehaviour {
                 }
                 map[y, x] = type;
                 x++;
+                //added z++
+                z++;
             }
             y++;
         }
@@ -188,7 +271,8 @@ public class LevelManager : MonoBehaviour {
                     }
                 }
             }
-            if (xcoord < mapData[0].Length)
+            //if (xcoord < mapData[0].Length), testing out mapDataSlotLength based on double digits
+            if (xcoord < mapDataSlotLength)
             { 
                 if(map[ycoord, xcoord + 1] == TileType.PATH || map[ycoord, xcoord + 1] == TileType.WAYPOINT)
                 {
