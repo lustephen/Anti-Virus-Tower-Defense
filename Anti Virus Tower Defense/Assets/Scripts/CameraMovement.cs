@@ -20,39 +20,41 @@ public class CameraMovement : MonoBehaviour {
 	private void Update () {
 
 
-        GetInput();
-        //Sets Limit on Camera Movement
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, xMax),
-            Mathf.Clamp(transform.position.y, yMin, 0), -10);
+		if (GetInput ()) {
+			//Sets Limit on Camera Movement (needs fixing)
+			/* transform.position = new Vector3 (Mathf.Clamp (transform.position.x, 0, xMax),
+				Mathf.Clamp (transform.position.y, yMin, 0), -10); */
+		}
 
     }
 
-    private void GetInput() //Moving Camera Using WASD
+    private bool GetInput() //Moving Camera Using WASD
     {
-        if (Input.GetKey(KeyCode.W))
+		bool input = false;
+		if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.up * cameraSpeed * Time.deltaTime);
+			input = true;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(Vector3.left * cameraSpeed * Time.deltaTime);
+			input = true;
         }
 
         if (Input.GetKey(KeyCode.S))
         {
             transform.Translate(Vector3.down * cameraSpeed * Time.deltaTime);
+			input = true;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(Vector3.right * cameraSpeed * Time.deltaTime);
+			input = true;
         }
-
-
-        //Sets Limit on Camera Movement
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, xMax), Mathf.Clamp(transform.position.y, yMin, 0), -10);
-
+		return input;
 
     }
 

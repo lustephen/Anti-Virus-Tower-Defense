@@ -42,58 +42,10 @@ public class LevelManager : MonoBehaviour {
     {
         Tiles = new Dictionary<Point, TileScript>();    //Allocate memory for tile grid dictionary
 
-
-        string[] mapData = ReadLevelText();
-
-
-        //string[] testmapData = ReadLevelText2();
-
-        //Prints out testmapData
-        /*for (int x = 0; x < testmapData.Length; x++)
-        {
-            Debug.Log(testmapData[x]);
-        }*/
-        //int testmapDataSize = testmapData[0].ToCharArray().Length / 2;
-        int mapDataSize = mapData[0].ToCharArray().Length / 2;
-        //Debug.Log(mapDataSize);
-        //Read an array slot in testmapData
-        /*for (int z = 0; z < testmapData.Length; z++)
-        {
-            char[] t = testmapData[z].ToCharArray();
-
-            for (int x = 0; x < t.Length-1; x++)
-            {
-                string s1 = t[x].ToString();
-                string s2 = t[x + 1].ToString();
-                string s = s1 + s2;
-                Debug.Log(s);
-                x++;
-                int count = x / 2;
-                Debug.Log(count);
-            }
-
-            for (int x = 0; x < testmapData[0].Length-1; x++)
-            {
-              
-                Debug.Log(t[x] + t[x+1]);
-                
-            }
-        } */
-        //int mapX = mapData[0].ToCharArray().Length; //Length of each element in mapData
-        //int mapY = mapData.Length;  //Length of mapData    
-
-        //int mapX = 20;  //Fixed Columns length for double digit level
-
-        int mapX = mapDataSize;
-
-        //int mapY = mapData.Length;
-
-        
-      
+        string[] mapData = ReadLevelText("Level");
+        int mapX = mapData[0].Length; //Length of each element in mapData
         int mapY = mapData.Length;  //Length of mapData    
 
-        //int mapX = mapData[0].ToCharArray().Length; //Length of each element in mapData
-        //int mapY = mapData.Length;  //Length of mapData    
 
         Vector3 maxTile = Vector3.zero;
 
@@ -111,9 +63,7 @@ public class LevelManager : MonoBehaviour {
             }
         }
 
-
-        maxTile = Tiles[new Point(mapX - 1, mapY - 1)].transform.position;      //Finding Max Tile (Bottom Right) through Dictionary
-
+        maxTile = Tiles[new Point(mapX-1, mapY-1)].transform.position;      //Finding Max Tile (Bottom Right) through Dictionary
         cameraMovement.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
         waypoints = findWaypoints(mapData, worldStart);
     }
@@ -156,19 +106,10 @@ public class LevelManager : MonoBehaviour {
         Tiles.Add(new Point(x, y), newTile);
     }
 
-
-    /*private string[] ReadLevelText()    //Reads the Level.txt file
+    private string[] ReadLevelText(string filename)
     {
-        TextAsset bindData = Resources.Load("Level") as TextAsset;
+        TextAsset bindData = Resources.Load(filename) as TextAsset;
         string data = bindData.text.Replace(Environment.NewLine, string.Empty);
-        return data.Split('-');     //Splits text document when reading "-"
-    }*/
-
-    private string[] ReadLevelText()
-    {
-        TextAsset bindData = Resources.Load("Level2") as TextAsset;
-        string data = bindData.text.Replace(Environment.NewLine, string.Empty).Replace(" ",string.Empty);
-
         return data.Split('-');     //Splits text document when reading "-"
     }
 
