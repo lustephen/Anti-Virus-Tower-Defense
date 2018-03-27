@@ -49,11 +49,10 @@ public class CameraMovement : MonoBehaviour {
             transform.Translate(Vector3.right * cameraSpeed * Time.deltaTime);
         }
 
-<<<<<<< HEAD
+
         //Sets Limit on Camera Movement
-        //transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, xMax), Mathf.Clamp(transform.position.y, yMin, 0), -10);
-=======
->>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, xMax), Mathf.Clamp(transform.position.y, yMin, 0), -10);
+
 
     }
 
