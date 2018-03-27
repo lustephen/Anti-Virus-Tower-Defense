@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4414940912467286}
   - component: {fileID: 212671488821482314}
-  - component: {fileID: 114583053425019826}
   m_Layer: 0
   m_Name: Cpu_top_middle
   m_TagString: Untagged
@@ -41,17 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114583053425019826
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1640834373869838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffae1a09f1d0f62499ce50e09fe5b029, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212671488821482314
 SpriteRenderer:
   m_ObjectHideFlags: 1

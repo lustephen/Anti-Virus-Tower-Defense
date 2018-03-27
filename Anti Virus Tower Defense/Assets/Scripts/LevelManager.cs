@@ -44,10 +44,8 @@ public class LevelManager : MonoBehaviour {
 
 <<<<<<< HEAD
         string[] mapData = ReadLevelText();
-        Vector3 test = new Vector3(1, 1);
-        Debug.Log(test);
-        //string[] testmapData = ReadLevelText2();
 
+<<<<<<< HEAD
         //Prints out testmapData
         /*for (int x = 0; x < testmapData.Length; x++)
         {
@@ -92,13 +90,16 @@ public class LevelManager : MonoBehaviour {
         int mapX = mapData[0].Length; //Length of each element in mapData
         int mapY = mapData.Length;  //Length of mapData    
 >>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
+=======
+        int mapX = mapData[0].ToCharArray().Length; //Length of each element in mapData
+        int mapY = mapData.Length;  //Length of mapData    
+>>>>>>> parent of 81239c0... New Level Reader
 
-        int mapY = mapData.Length;
 
         Vector3 maxTile = Vector3.zero;
 
         Vector3 worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height)); //Coordinate of Top Left Corner of Camera/Screen
-        /*for (int y = 0; y < mapY; y++) //Y 
+        for (int y = 0; y < mapY; y++) //Y 
         {
             string newTiles = mapData[y];
 
@@ -109,30 +110,17 @@ public class LevelManager : MonoBehaviour {
                     break;
                 PlaceTile(tile, x, y, worldStart);    //Places Tiles Accordingly to Level.txt
             }
-        }*/
-
-        for (int y = 0; y < mapY; y++)
-        {
-            char[] newTiles = mapData[y].ToCharArray();
-
-            for (int x = 0; x < newTiles.Length-1; x++)
-            {   
-                //Concatenating two chars to form double digits to use in PlaceTile function
-                string s1 = newTiles[x].ToString();
-                string s2 = newTiles[x + 1].ToString();
-                string s = s1 + s2;
-                x++;
-                int x1 = x / 2;
-                PlaceTile(s, x1, y, worldStart);
-            }
         }
 
 <<<<<<< HEAD
         maxTile = Tiles[new Point(mapX - 1, mapY - 1)].transform.position;      //Finding Max Tile (Bottom Right) through Dictionary
+<<<<<<< HEAD
         Debug.Log(maxTile);
 =======
         maxTile = Tiles[new Point(mapX-1, mapY-1)].transform.position;      //Finding Max Tile (Bottom Right) through Dictionary
 >>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
+=======
+>>>>>>> parent of 81239c0... New Level Reader
         cameraMovement.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
         waypoints = findWaypoints(mapData, worldStart);
     }
@@ -176,6 +164,7 @@ public class LevelManager : MonoBehaviour {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     /*private string[] ReadLevelText()    //Reads the Level.txt file
     {
         TextAsset bindData = Resources.Load("Level") as TextAsset;
@@ -189,21 +178,18 @@ public class LevelManager : MonoBehaviour {
         string data = bindData.text.Replace(Environment.NewLine, string.Empty);
         return data.Split('-');     //Splits text document when reading "-"
     }*/
-
-    private string[] ReadLevelText()    //Reads the Level2.txt file
+=======
+    private string[] ReadLevelText()
     {
-       
-        TextAsset test = Resources.Load("Level2") as TextAsset;
-        //print(test);
-      
+        TextAsset bindData = Resources.Load("Level") as TextAsset;
+>>>>>>> parent of 81239c0... New Level Reader
 
-        string data = test.text.Replace(Environment.NewLine, string.Empty).Replace(" ", string.Empty) ; //Forms into one string and eliminates spaces
-   
+        string data = bindData.text.Replace(Environment.NewLine, string.Empty);
 
         return data.Split('-');     //Splits text document when reading "-"
     }
 
-    private void HandleEscape()
+	private void HandleEscape()
 	{
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			showPauseMenu ();
@@ -219,26 +205,17 @@ public class LevelManager : MonoBehaviour {
     private List<Vector3> findWaypoints(string[] mapData, Vector3 worldStart)
     {
         // copy data into 2d array
-        //Fixing based on new mapData sizes due to double digit integration
-        //TileType[,] map = new TileType[mapData.Length, mapData[0].Length];
-        int mapDataSlotLength = mapData[0].ToCharArray().Length / 2;
-        TileType[,] map = new TileType[mapData.Length, mapDataSlotLength];
+        TileType[,] map = new TileType[mapData.Length, mapData[0].Length];
         int y = 0;
         int startx, starty;
         startx = starty = 0;
         foreach (string row in mapData)
         {
             int x = 0;
-            //foreach (char c in row)
-            for (int z = 0; z <row.Length-1; z++)
+            foreach (char c in row)
             {
-                //new stuff
-                string s1 = row[z].ToString();
-                string s2 = row[z + 1].ToString();
-                string s = s1 + s2;
                 // we're gonna cheat and get the spawn point while we are copying the map
-                //int tileIndex = int.Parse(c.ToString());
-                int tileIndex = int.Parse(s);
+                int tileIndex = int.Parse(c.ToString());
                 TileType type = (TileType)tileIndex;
                 if (type == TileType.SPAWNPOINT)
                 {
@@ -247,8 +224,6 @@ public class LevelManager : MonoBehaviour {
                 }
                 map[y, x] = type;
                 x++;
-                //added z++
-                z++;
             }
             y++;
         }
@@ -293,8 +268,7 @@ public class LevelManager : MonoBehaviour {
                     }
                 }
             }
-            //if (xcoord < mapData[0].Length), testing out mapDataSlotLength based on double digits
-            if (xcoord < mapDataSlotLength)
+            if (xcoord < mapData[0].Length)
             { 
                 if(map[ycoord, xcoord + 1] == TileType.PATH || map[ycoord, xcoord + 1] == TileType.WAYPOINT)
                 {
