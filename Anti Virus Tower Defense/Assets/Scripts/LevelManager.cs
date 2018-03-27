@@ -42,16 +42,12 @@ public class LevelManager : MonoBehaviour {
     {
         Tiles = new Dictionary<Point, TileScript>();    //Allocate memory for tile grid dictionary
 
-<<<<<<< HEAD
-        string[] mapData = ReadLevelText();
-<<<<<<< HEAD
-=======
-        Vector3 test = new Vector3(1, 1);
-        Debug.Log(test);
-        //string[] testmapData = ReadLevelText2();
->>>>>>> parent of 92141ad... Fixed Merging Files
 
-<<<<<<< HEAD
+        string[] mapData = ReadLevelText();
+
+
+        //string[] testmapData = ReadLevelText2();
+
         //Prints out testmapData
         /*for (int x = 0; x < testmapData.Length; x++)
         {
@@ -91,21 +87,13 @@ public class LevelManager : MonoBehaviour {
         int mapX = mapDataSize;
 
         //int mapY = mapData.Length;
-=======
-        string[] mapData = ReadLevelText("Level");
-        int mapX = mapData[0].Length; //Length of each element in mapData
-        int mapY = mapData.Length;  //Length of mapData    
->>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
-<<<<<<< HEAD
-=======
-        int mapX = mapData[0].ToCharArray().Length; //Length of each element in mapData
-        int mapY = mapData.Length;  //Length of mapData    
->>>>>>> parent of 81239c0... New Level Reader
 
-=======
+        
+      
+        int mapY = mapData.Length;  //Length of mapData    
 
-        int mapY = mapData.Length;
->>>>>>> parent of 92141ad... Fixed Merging Files
+        //int mapX = mapData[0].ToCharArray().Length; //Length of each element in mapData
+        int mapY = mapData.Length;  //Length of mapData    
 
         Vector3 maxTile = Vector3.zero;
 
@@ -123,21 +111,9 @@ public class LevelManager : MonoBehaviour {
             }
         }
 
-<<<<<<< HEAD
+
         maxTile = Tiles[new Point(mapX - 1, mapY - 1)].transform.position;      //Finding Max Tile (Bottom Right) through Dictionary
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 92141ad... Fixed Merging Files
-        Debug.Log(maxTile);
-=======
-        maxTile = Tiles[new Point(mapX-1, mapY-1)].transform.position;      //Finding Max Tile (Bottom Right) through Dictionary
->>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
-<<<<<<< HEAD
-=======
->>>>>>> parent of 81239c0... New Level Reader
-=======
->>>>>>> parent of 92141ad... Fixed Merging Files
+
         cameraMovement.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
         waypoints = findWaypoints(mapData, worldStart);
     }
@@ -180,31 +156,18 @@ public class LevelManager : MonoBehaviour {
         Tiles.Add(new Point(x, y), newTile);
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 92141ad... Fixed Merging Files
+
     /*private string[] ReadLevelText()    //Reads the Level.txt file
     {
         TextAsset bindData = Resources.Load("Level") as TextAsset;
-        //string data = bindData.text.Replace(Environment.NewLine, string.Empty);
-     
-=======
-    private string[] ReadLevelText(string filename)
-    {
-        TextAsset bindData = Resources.Load(filename) as TextAsset;
->>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
         string data = bindData.text.Replace(Environment.NewLine, string.Empty);
         return data.Split('-');     //Splits text document when reading "-"
     }*/
-=======
+
     private string[] ReadLevelText()
     {
-        TextAsset bindData = Resources.Load("Level") as TextAsset;
->>>>>>> parent of 81239c0... New Level Reader
-
-        string data = bindData.text.Replace(Environment.NewLine, string.Empty);
+        TextAsset bindData = Resources.Load("Level2") as TextAsset;
+        string data = bindData.text.Replace(Environment.NewLine, string.Empty).Replace(" ",string.Empty);
 
         return data.Split('-');     //Splits text document when reading "-"
     }
