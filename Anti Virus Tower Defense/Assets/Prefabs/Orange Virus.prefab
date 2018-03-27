@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4350178757675398}
   - component: {fileID: 212807152667052544}
+  - component: {fileID: 114977539302055306}
+  - component: {fileID: 114151354593615482}
   m_Layer: 0
   m_Name: Orange Virus
   m_TagString: Untagged
@@ -40,6 +42,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114151354593615482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1550927143663040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5d01a506b5c5c45913f997ab729dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  speed: 2
+--- !u!114 &114977539302055306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1550927143663040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e195f65622615164e9f18689c74085aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212807152667052544
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -71,8 +97,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1337670197
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2456240588efb7841ba4e8c9b562946a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
