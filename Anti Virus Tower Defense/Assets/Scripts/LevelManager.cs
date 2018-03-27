@@ -93,7 +93,7 @@ public class LevelManager : MonoBehaviour {
         int mapY = mapData.Length;  //Length of mapData    
 
         //int mapX = mapData[0].ToCharArray().Length; //Length of each element in mapData
-        int mapY = mapData.Length;  //Length of mapData    
+        //int mapY = mapData.Length;  //Length of mapData    
 
         Vector3 maxTile = Vector3.zero;
 
