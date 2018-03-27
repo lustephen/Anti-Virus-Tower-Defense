@@ -50,6 +50,10 @@ public class CameraMovement : MonoBehaviour {
         }
 
 
+        //Sets Limit on Camera Movement
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, xMax), Mathf.Clamp(transform.position.y, yMin, 0), -10);
+
+
     }
 
     public void SetLimits(Vector3 maxTile)    //Prevent Camera From Moving Offscreen
