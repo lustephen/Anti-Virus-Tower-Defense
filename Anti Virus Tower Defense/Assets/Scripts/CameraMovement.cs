@@ -21,8 +21,11 @@ public class CameraMovement : MonoBehaviour {
 
 
         GetInput();
-                
-	}
+        //Sets Limit on Camera Movement
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, xMax),
+            Mathf.Clamp(transform.position.y, yMin, 0), -10);
+
+    }
 
     private void GetInput() //Moving Camera Using WASD
     {
@@ -46,16 +49,23 @@ public class CameraMovement : MonoBehaviour {
             transform.Translate(Vector3.right * cameraSpeed * Time.deltaTime);
         }
 
+<<<<<<< HEAD
         //Sets Limit on Camera Movement
         //transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, xMax), Mathf.Clamp(transform.position.y, yMin, 0), -10);
+=======
+>>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
 
     }
 
     public void SetLimits(Vector3 maxTile)    //Prevent Camera From Moving Offscreen
     {
         Vector3 wp = Camera.main.ViewportToWorldPoint(new Vector3(1, 0));   //Location of Bottom Right Coordinate of Camera
-
-        xMax = maxTile.x - wp.x;    //Max movement on x axis
+      //  Vector3 wp = new Vector3(0, 0, 0);
+        Debug.Log(maxTile.x);
+        Debug.Log(wp.x);
+        //xMax = maxTile.x - wp.x;    //Max movement on x axis
+        //yMin = maxTile.y - wp.y;    //Min movement on y axis
+        xMax = wp.x - maxTile.x;    //Max movement on x axis
         yMin = maxTile.y - wp.y;    //Min movement on y axis
     }
 }

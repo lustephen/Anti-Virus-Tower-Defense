@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour {
             return tilePrefabs[0].GetComponent<SpriteRenderer>().sprite.bounds.size.x;
         }
     }
-    private enum TileType       { EMPTY, PATH, WAYPOINT, SPAWNPOINT };
+    private enum TileType       { EMPTY, PATH, WAYPOINT, SPAWNPOINT, USB_TOP, USB_BOTTOM, USB_MIDDLE, USB_HEAD };
     public static Vector3       spawnPoint;
     public static List<Vector3> waypoints = new List<Vector3>();
 
@@ -40,8 +40,9 @@ public class LevelManager : MonoBehaviour {
 
     private void CreateLevel()
     {
-        Tiles = new Dictionary<Point, TileScript>();    //Allcate memory for tile grid dictionary
+        Tiles = new Dictionary<Point, TileScript>();    //Allocate memory for tile grid dictionary
 
+<<<<<<< HEAD
         string[] mapData = ReadLevelText();
         Vector3 test = new Vector3(1, 1);
         Debug.Log(test);
@@ -86,6 +87,11 @@ public class LevelManager : MonoBehaviour {
         int mapX = mapDataSize;
 
         //int mapY = mapData.Length;
+=======
+        string[] mapData = ReadLevelText("Level");
+        int mapX = mapData[0].Length; //Length of each element in mapData
+        int mapY = mapData.Length;  //Length of mapData    
+>>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
 
         int mapY = mapData.Length;
 
@@ -94,12 +100,14 @@ public class LevelManager : MonoBehaviour {
         Vector3 worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height)); //Coordinate of Top Left Corner of Camera/Screen
         /*for (int y = 0; y < mapY; y++) //Y 
         {
-            char[] newTiles = mapData[y].ToCharArray();
-
+            string newTiles = mapData[y];
 
             for (int x = 0; x < mapX; x++) //X 
             {
-               PlaceTile(newTiles[x].ToString(), x, y, worldStart);    //Places Tiles Accordingly to Level.txt
+                string tile = newTiles[x].ToString();
+                if (tile == "-")
+                    break;
+                PlaceTile(tile, x, y, worldStart);    //Places Tiles Accordingly to Level.txt
             }
         }*/
 
@@ -119,15 +127,20 @@ public class LevelManager : MonoBehaviour {
             }
         }
 
+<<<<<<< HEAD
         maxTile = Tiles[new Point(mapX - 1, mapY - 1)].transform.position;      //Finding Max Tile (Bottom Right) through Dictionary
         Debug.Log(maxTile);
+=======
+        maxTile = Tiles[new Point(mapX-1, mapY-1)].transform.position;      //Finding Max Tile (Bottom Right) through Dictionary
+>>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
         cameraMovement.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
-        findWaypoints(mapData, worldStart);
+        waypoints = findWaypoints(mapData, worldStart);
     }
 
     private void PlaceTile(string tileType, int x, int y, Vector3 worldStart)   //Places Tiles Accordingly to Level.txt
     {
         int tileIndex = int.Parse(tileType);    //Pass tiletype:string to tileIndex:int
+
         TileScript newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<TileScript>();   //New Object Tile
         TileType type = (TileType)tileIndex;
 
@@ -140,6 +153,10 @@ public class LevelManager : MonoBehaviour {
         {
             case TileType.EMPTY:
             case TileType.PATH:
+            case TileType.USB_TOP:
+            case TileType.USB_MIDDLE:
+            case TileType.USB_BOTTOM:
+            case TileType.USB_HEAD:
                 newTile.Setup(new Point(x, y), position);
                 break;
             case TileType.WAYPOINT:
@@ -158,13 +175,18 @@ public class LevelManager : MonoBehaviour {
         Tiles.Add(new Point(x, y), newTile);
     }
 
+<<<<<<< HEAD
     /*private string[] ReadLevelText()    //Reads the Level.txt file
     {
         TextAsset bindData = Resources.Load("Level") as TextAsset;
         //string data = bindData.text.Replace(Environment.NewLine, string.Empty);
      
+=======
+    private string[] ReadLevelText(string filename)
+    {
+        TextAsset bindData = Resources.Load(filename) as TextAsset;
+>>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
         string data = bindData.text.Replace(Environment.NewLine, string.Empty);
-
         return data.Split('-');     //Splits text document when reading "-"
     }*/
 
@@ -194,7 +216,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
     /* Lord forgive me for this hacky code I am about to write. It pains me to do this. */
-    private void findWaypoints(string[] mapData, Vector3 worldStart)
+    private List<Vector3> findWaypoints(string[] mapData, Vector3 worldStart)
     {
         // copy data into 2d array
         //Fixing based on new mapData sizes due to double digit integration
@@ -306,6 +328,7 @@ public class LevelManager : MonoBehaviour {
                 }
             }
         }
+        return waypoints;
     }
 
     bool point_in(List<int> s, List<List<int>> visited)
