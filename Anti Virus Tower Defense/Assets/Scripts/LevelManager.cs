@@ -42,8 +42,10 @@ public class LevelManager : MonoBehaviour {
     {
         Tiles = new Dictionary<Point, TileScript>();    //Allocate memory for tile grid dictionary
 
-
+<<<<<<< HEAD
         string[] mapData = ReadLevelText();
+        Vector3 test = new Vector3(1, 1);
+        Debug.Log(test);
         //string[] testmapData = ReadLevelText2();
 
         //Prints out testmapData
@@ -85,8 +87,13 @@ public class LevelManager : MonoBehaviour {
         int mapX = mapDataSize;
 
         //int mapY = mapData.Length;
-
+=======
+        string[] mapData = ReadLevelText("Level");
+        int mapX = mapData[0].Length; //Length of each element in mapData
         int mapY = mapData.Length;  //Length of mapData    
+>>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
+
+        int mapY = mapData.Length;
 
         Vector3 maxTile = Vector3.zero;
 
@@ -120,9 +127,12 @@ public class LevelManager : MonoBehaviour {
             }
         }
 
-
+<<<<<<< HEAD
         maxTile = Tiles[new Point(mapX - 1, mapY - 1)].transform.position;      //Finding Max Tile (Bottom Right) through Dictionary
-
+        Debug.Log(maxTile);
+=======
+        maxTile = Tiles[new Point(mapX-1, mapY-1)].transform.position;      //Finding Max Tile (Bottom Right) through Dictionary
+>>>>>>> 47de2bc1d8cf8a286fd2b8506d7cbb0e286a924e
         cameraMovement.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
         waypoints = findWaypoints(mapData, worldStart);
     }
@@ -165,7 +175,7 @@ public class LevelManager : MonoBehaviour {
         Tiles.Add(new Point(x, y), newTile);
     }
 
-
+<<<<<<< HEAD
     /*private string[] ReadLevelText()    //Reads the Level.txt file
     {
         TextAsset bindData = Resources.Load("Level") as TextAsset;
