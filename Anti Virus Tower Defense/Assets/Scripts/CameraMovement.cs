@@ -21,9 +21,8 @@ public class CameraMovement : MonoBehaviour {
 
 
 		if (GetInput ()) {
-			//Sets Limit on Camera Movement (needs fixing)
-			/* transform.position = new Vector3 (Mathf.Clamp (transform.position.x, 0, xMax),
-				Mathf.Clamp (transform.position.y, yMin, 0), -10); */
+			//Sets Limit on Camera Movement 
+		    transform.position = new Vector3 (Mathf.Clamp (transform.position.x, 0, xMax),Mathf.Clamp (transform.position.y, yMin, 0), -10); 
 		}
 
     }
@@ -64,9 +63,9 @@ public class CameraMovement : MonoBehaviour {
       //  Vector3 wp = new Vector3(0, 0, 0);
         Debug.Log(maxTile.x);
         Debug.Log(wp.x);
-        //xMax = maxTile.x - wp.x;    //Max movement on x axis
+        xMax = maxTile.x - wp.x;    //Max movement on x axis
         //yMin = maxTile.y - wp.y;    //Min movement on y axis
-        xMax = wp.x - maxTile.x;    //Max movement on x axis
+        //xMax = wp.x - maxTile.x;    //Max movement on x axis
         yMin = maxTile.y - wp.y;    //Min movement on y axis
     }
 }
