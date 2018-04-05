@@ -35,8 +35,9 @@ public class EnemyManager : MonoBehaviour {
         enemyList.Add(enemy);
     }
 
-    void loadEnemyWave(string filename)
+    //nothing to load currently, thus commented out for now
+    /*void loadEnemyWave(string filename)
     {
         TextAsset waveFile = Resources.Load(filename) as TextAsset;
-    }
+    }*/
 }
