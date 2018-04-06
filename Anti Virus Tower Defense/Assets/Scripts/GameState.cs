@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameState : MonoBehaviour {
 
     public static int towerHealth = 100;
+    public static bool wave_over = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -16,6 +17,13 @@ public class GameState : MonoBehaviour {
         {
             Debug.Log("CPU Destroyed! Game Over!");
             // Transition to Game Over State
+        }
+        GameObject enemyManager = GameObject.Find("EnemyManager");
+        EnemyManager enemyManagerScript = enemyManager.GetComponent<EnemyManager>();
+        if (enemyManagerScript.waveOver())
+        {
+            enemyManagerScript.nextWave();
+            Debug.Log("Wave Over. Starting Next Wave.");
         }
     }
 }
