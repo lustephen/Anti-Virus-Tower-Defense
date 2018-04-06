@@ -29,16 +29,17 @@ public class Wave
         string[] enemy_info = spawn_data.Split(' '); // [ID-NUM, ID-NUM, ...]
         foreach (string entry in enemy_info)
         {
-            Debug.Log(entry);
             string[] split = entry.Split('-');
             if (split.Length != 2)
             {
                 Debug.LogError("Wave Error. Incorrect EnemyWave format: " + entry);
+                throw new System.ArgumentException("Incorrect EnemyWave format");
             }
             int enemyType = int.Parse(split[0]);
             if (enemyType > enemyPrefabs.ToArray().Length-1 || enemyType < 0)
             {
-                Debug.LogError("Wave Error. No enemy of that type indexible at " + enemyType);
+                Debug.LogError("Wave Error. No enemy of that type indexable at " + enemyType);
+                throw new System.ArgumentException("Uknown Enemy Type");
             }
             Object enemy = enemyPrefabs[enemyType];
             int spawnNumber = int.Parse(split[1]);
@@ -64,8 +65,6 @@ public class Wave
     {
         return wave_order.Count == 0;
     }
-
-
 }
 
 /*
@@ -83,14 +82,18 @@ public class EnemyManager : MonoBehaviour {
     private int enemiesRemaining;
 
 	void Start () {
-        waves = loadEnemyWaves("Waves");
-        currentWaveIndex = 0;
-        enemiesRemaining = waves[currentWaveIndex].totalEnemies;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (!waves[currentWaveIndex].isFinished() && currentWaveIndex < waves.ToArray().Length)
+
+    public void Init()
+    {
+        waves = loadEnemyWaves("Waves");
+        enemiesRemaining = waves[currentWaveIndex].totalEnemies;
+        currentWaveIndex = 0;
+    }
+
+    // Update is called once per frame
+    void Update () {
+        if (waves.Count != 0 && !waves[currentWaveIndex].isFinished() && currentWaveIndex < waves.ToArray().Length)
         {
             spawnWave(currentWaveIndex);
         }
