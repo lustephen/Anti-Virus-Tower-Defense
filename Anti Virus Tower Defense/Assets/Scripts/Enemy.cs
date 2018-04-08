@@ -12,7 +12,8 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (health <= 0)
+        gameObject.GetComponent<BoxCollider2D>().transform.position = gameObject.transform.position;
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
