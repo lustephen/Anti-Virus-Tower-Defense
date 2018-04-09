@@ -28,8 +28,10 @@ public class GameState : MonoBehaviour {
     [SerializeField]
     private GameObject gameOverMenu;
 
-    
- 
+    public bool getGameOver()
+    {
+        return gameOver;
+    }
 
     public int Lives
     {
@@ -83,4 +85,12 @@ public class GameState : MonoBehaviour {
     {
         Instance = this;
     }
+
+
+     public bool Test()
+    {
+        return (GameObject.Find("Lives") != null);
+    }
+ 
+
 }
