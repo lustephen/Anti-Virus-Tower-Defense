@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4257178307021024}
   - component: {fileID: 212489461537702404}
   - component: {fileID: 114748959774521336}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Usb_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffae1a09f1d0f62499ce50e09fe5b029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canPlaceTower: 0
 --- !u!212 &212489461537702404
 SpriteRenderer:
   m_ObjectHideFlags: 1

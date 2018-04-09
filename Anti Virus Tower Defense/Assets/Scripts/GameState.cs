@@ -15,6 +15,7 @@ public class GameState : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         if (towerHealth <= 0)
         {
             Debug.Log("CPU Destroyed! Game Over!");

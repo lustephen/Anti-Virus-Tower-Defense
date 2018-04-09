@@ -84,26 +84,27 @@ public class LevelManager : MonoBehaviour {
         switch (type)
         {
             case TileType.EMPTY:
+                newTile.Setup(new Point(x, y), position, true);
+                break;
             case TileType.PATH:
             case TileType.USB_TOP:
             case TileType.USB_MIDDLE:
             case TileType.USB_BOTTOM:
             case TileType.USB_HEAD:
-                newTile.Setup(new Point(x, y), position);
+                newTile.Setup(new Point(x, y), position, false);
                 break;
             case TileType.WAYPOINT:
-                newTile.Setup(new Point(x, y), position, true);
+                newTile.Setup(new Point(x, y), position, false);
                 break;
             case TileType.SPAWNPOINT:
                 // center spawn point
                 spawnPoint = new Vector3(position.x + (TileSize / 2), position.y - (TileSize / 2), 0);
-                newTile.Setup(new Point(x, y), position, false, true);
+                newTile.Setup(new Point(x, y), position, false);
                 break;
             default:
                 Debug.LogError("UNKNOWN TILE TYPE: " + tileType.ToString());
                 break;
         }
-        newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0));
         Tiles.Add(new Point(x, y), newTile);
     }
 
