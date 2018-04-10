@@ -5,7 +5,9 @@ using UnityEngine;
 public class TileScript : MonoBehaviour {
 
     public Point GridPosition { get; private set; }
-    public bool canPlaceTower = false;
+    bool waypoint = false;
+    bool spawnPoint = false;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -13,13 +15,16 @@ public class TileScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-      
+		
 	}
 
-    public void Setup(Point gridPos, Vector3 worldPos, bool canPlaceTower)
+    public void Setup(Point gridPos, Vector3 worldPos, bool waypoint = false, bool spawnPoint = false)
     {
         this.GridPosition = gridPos;
         transform.position = worldPos;
-        this.canPlaceTower = canPlaceTower;
+        if (waypoint)
+        {
+            this.waypoint = true;
+        }
     }
 }

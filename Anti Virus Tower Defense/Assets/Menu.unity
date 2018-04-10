@@ -472,16 +472,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dolor
-    tincidunt, tincidunt eros vitae, pulvinar mauris. In hac habitasse platea dictumst.
-    Curabitur aliquet, magna sit amet dignissim ornare, eros ipsum euismod ante, rhoncus
-    rhoncus risus lorem in augue. Vivamus id placerat mauris. Lorem ipsum dolor sit
-    amet, consectetur adipiscing elit. Nam ut elementum orci. Duis eu libero feugiat,
-    euismod nisi nec, rhoncus justo. Sed bibendum lorem dolor, scelerisque malesuada
-    erat posuere non. Vivamus vulputate porttitor ex, nec egestas ex gravida quis.
-    Donec ornare iaculis faucibus. Quisque tristique, sapien vitae ullamcorper tincidunt,
-    justo mi aliquam elit, nec dapibus erat nisl sed libero. Nunc eu tristique libero.
-    Nam hendrerit imperdiet luctus.
+  m_Text: 'Stephen Lu
+
+    Austin Smith
+
+    Marshall Cain
+
+    Daniel Edgington
+
+    Daniel Boyd'
 --- !u!222 &262876105
 CanvasRenderer:
   m_ObjectHideFlags: 0

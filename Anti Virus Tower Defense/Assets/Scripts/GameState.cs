@@ -1,30 +1,105 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameState : MonoBehaviour {
 
-    public static int towerHealth = 100;
-    public static bool wave_over = false;
-    EnemyManager enemyManagerScript;
+    //changing towerHealth to lives
+    
+
+    private int lives;
+
+    private int wave = 0;
+
+    private bool gameOver = false;
+
+    public static GameState Instance;
+
+    [SerializeField]
+    private Text livesText;
+
+    [SerializeField]
+    private Text waveText;
+
+    [SerializeField]
+    private GameObject waveButton;
+
+    [SerializeField]
+    private GameObject gameOverMenu;
+
+    public bool getGameOver()
+    {
+        return gameOver;
+    }
+
+    public int getlivesText()
+    {
+        return int.Parse(livesText.ToString());
+    }
+
+    public int Lives
+    {
+        get {
+            return lives;
+        }
+        set {
+            this.lives = value;
+
+            if (lives <= 0)
+            {
+                this.lives = 0;
+                GameOver();
+            }
+         
+            livesText.text = value.ToString();
+
+        }
+    }
+
+
 	// Use this for initialization
 	void Start () {
-        enemyManagerScript = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
-        enemyManagerScript.Init();
+        Lives = 10;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (towerHealth <= 0)
+     
+    }
+
+    public void StartWave()
+    {
+        wave++;
+        waveText.text = string.Format("Wave: <color=cyan>(0)</color>", wave);
+
+        waveButton.SetActive(false);
+    }
+
+    public void GameOver()
+    {
+        if (!gameOver)
         {
-            Debug.Log("CPU Destroyed! Game Over!");
-            // Transition to Game Over State
-        }
-        if (enemyManagerScript.waveOver())
-        {
-            enemyManagerScript.nextWave();
-            Debug.Log("Wave Over. Starting Next Wave.");
+            gameOver = true;
+            gameOverMenu.SetActive(true);
         }
     }
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
+
+     public bool Test()
+    {
+        return (GameObject.Find("Lives") != null);
+    }
+    
+    public bool Test2()
+    {
+        return (GameObject.Find("GameOver") != null);
+    }
+
 }

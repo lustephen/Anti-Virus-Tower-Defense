@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PathFollow : MonoBehaviour {
 
@@ -29,8 +30,7 @@ public class PathFollow : MonoBehaviour {
         }
         else
         {
-            GameState.towerHealth -= 5;
-            GameObject.Find("EnemyManager").GetComponent<EnemyManager>().destroyEnemy();
+            GameState.Instance.Lives--;
             Destroy(gameObject);
         }
     }
