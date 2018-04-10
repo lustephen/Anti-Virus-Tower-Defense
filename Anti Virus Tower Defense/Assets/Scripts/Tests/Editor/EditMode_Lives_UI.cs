@@ -30,5 +30,26 @@ public class EditMode_Lives_UI
         Assert.IsTrue(test.activeInHierarchy);
     }
 
+    [UnityTest]
+    public IEnumerator Inactive_GameOver()
+    {
+       
+        Debug.Log("Testing GameOver");
+        Assert.IsTrue(GameObject.Find("GameOver") == null);
+
+        var GSTest = new GameObject().AddComponent<GameState>();
+        Debug.Log(GSTest.getGameOver());
+        yield return null;
+        Assert.IsFalse(GSTest.getGameOver());
+       
+       
+        
+      
+        
+
+    }
+
+    
+
 }
 

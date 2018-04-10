@@ -48,16 +48,27 @@ namespace Tests
 
             yield return null;
         }*/
-
-        [Test]
-        public void Decreasing_Lives()
+        [UnityTest]
+        public IEnumerator Decreasing_Lives()
         {
-            Debug.Log("Testing Decreasing_Lives");
-            var test = new GameObject().AddComponent<GameState>();
-            Debug.Log(test.Lives);
+            SetupScene();
+            yield return null;
+            yield return new WaitForSeconds(5);
         }
 
 
-      
+
+
+        void SetupScene()
+        {
+            MonoBehaviour.Instantiate(Resources.Load<GameObject>("Main Camera"));
+            MonoBehaviour.Instantiate(Resources.Load<GameObject>("Level Manager"));
+            MonoBehaviour.Instantiate(Resources.Load<GameObject>("GameState"));
+            MonoBehaviour.Instantiate(Resources.Load<GameObject>("Canvas"));
+     
+            //MonoBehaviour.Instantiate(Resources.Load<GameObject>("GameOver"));
+
+        }
+
     }
 }

@@ -33,6 +33,11 @@ public class GameState : MonoBehaviour {
         return gameOver;
     }
 
+    public int getlivesText()
+    {
+        return int.Parse(livesText.ToString());
+    }
+
     public int Lives
     {
         get {
@@ -91,6 +96,10 @@ public class GameState : MonoBehaviour {
     {
         return (GameObject.Find("Lives") != null);
     }
- 
+    
+    public bool Test2()
+    {
+        return (GameObject.Find("GameOver") != null);
+    }
 
 }
