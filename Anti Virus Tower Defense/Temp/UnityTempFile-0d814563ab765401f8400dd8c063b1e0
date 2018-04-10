@@ -2,8 +2,9 @@
 -target:library
 -nowarn:0169
 -langversion:4
--out:'Temp/Assembly-CSharp.dll'
+-out:'Temp/Assembly-CSharp-Editor.dll'
 -unsafe
+-r:'Library/ScriptAssemblies/Assembly-CSharp.dll'
 -r:'/Applications/Unity 3.1f1/Unity.app/Contents/Managed/UnityEditor.dll'
 -r:'/Applications/Unity 3.1f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll'
 -r:'/Applications/Unity 3.1f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.CoreModule.dll'
@@ -178,33 +179,10 @@
 -define:UNITY_EDITOR_OSX
 -define:ENABLE_NATIVE_ARRAY_CHECKS
 -define:UNITY_TEAM_LICENSE
-'Assets/MainMenu.cs'
-'Assets/Scripts/ActiveStateToggler.cs'
-'Assets/Scripts/ApplicationManager.cs'
-'Assets/Scripts/CameraMovement.cs'
-'Assets/Scripts/ChangeColor.cs'
-'Assets/Scripts/DragMe.cs'
-'Assets/Scripts/DragPanel.cs'
-'Assets/Scripts/DropMe.cs'
-'Assets/Scripts/Enemy.cs'
-'Assets/Scripts/EnemyManager.cs'
-'Assets/Scripts/GameState.cs'
-'Assets/Scripts/LevelManager.cs'
-'Assets/Scripts/LoadSceneOnClick.cs'
-'Assets/Scripts/PanelManager.cs'
-'Assets/Scripts/PathFollow.cs'
-'Assets/Scripts/Point.cs'
-'Assets/Scripts/ResizePanel.cs'
-'Assets/Scripts/ScrollDetailTexture.cs'
-'Assets/Scripts/SelectOnInput.cs'
-'Assets/Scripts/ShowSliderValue.cs'
-'Assets/Scripts/Tests/EnemySpawningTests.cs'
-'Assets/Scripts/Tests/LevelCreationTests.cs'
-'Assets/Scripts/TileScript.cs'
-'Assets/Scripts/TiltWindow.cs'
--r:'/Applications/Unity 3.1f1/Unity.app/Contents/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
--r:'/Applications/Unity 3.1f1/Unity.app/Contents/Mono/lib/mono/unity/System.Xml.Linq.dll'
--r:'/Applications/Unity 3.1f1/Unity.app/Contents/Mono/lib/mono/unity/UnityScript.dll'
--r:'/Applications/Unity 3.1f1/Unity.app/Contents/Mono/lib/mono/unity/UnityScript.Lang.dll'
--r:'/Applications/Unity 3.1f1/Unity.app/Contents/Mono/lib/mono/unity/Boo.Lang.dll'
--sdk:unity
+'Assets/Scripts/Editor/ScriptTester.cs'
+-r:'/Applications/Unity 3.1f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/2.0-api/System.Runtime.Serialization.dll'
+-r:'/Applications/Unity 3.1f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/2.0-api/System.Xml.Linq.dll'
+-r:'/Applications/Unity 3.1f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/2.0-api/UnityScript.dll'
+-r:'/Applications/Unity 3.1f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/2.0-api/UnityScript.Lang.dll'
+-r:'/Applications/Unity 3.1f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/2.0-api/Boo.Lang.dll'
+-sdk:2.0
