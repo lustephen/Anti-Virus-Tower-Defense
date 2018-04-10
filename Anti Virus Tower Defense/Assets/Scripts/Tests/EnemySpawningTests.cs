@@ -20,7 +20,6 @@ namespace Tests
 
             var spawnedEnemy = GameObject.FindWithTag("Enemy");
             var prefabOfTheSpawnedEnemy = PrefabUtility.GetPrefabParent(spawnedEnemy);
-            Debug.Log(prefabOfTheSpawnedEnemy.name);
 
             Assert.AreEqual(enemyPrefab, prefabOfTheSpawnedEnemy);
         }

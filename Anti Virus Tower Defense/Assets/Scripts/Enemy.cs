@@ -9,12 +9,22 @@ public class Enemy : MonoBehaviour {
 	void Start () {
 		
 	}
-	
 	// Update is called once per frame
 	void Update () {
-		if (health <= 0)
+        gameObject.GetComponent<BoxCollider2D>().transform.position = gameObject.transform.position;
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
 	}
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            print("HELLO");
+            this.health -= collision.gameObject.GetComponent<BasicBullet>().damage;
+            Destroy(collision.gameObject);
+        }
+    }
 }
