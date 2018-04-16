@@ -30,6 +30,7 @@ public class PathFollow : MonoBehaviour {
         else
         {
             GameState.Instance.Lives--;
+            GameState.Instance.Score-=50;
             GameObject.Find("EnemyManager").GetComponent<EnemyManager>().destroyEnemy();
             Destroy(gameObject);
         }

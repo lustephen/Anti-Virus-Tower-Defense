@@ -8,13 +8,24 @@ public class GameState : MonoBehaviour {
    
     public static bool wave_over = false;
 
+    private bool gameOver = false;
+
+
     public static GameState Instance;
+
+
+
     private int lives;
 
-    private bool gameOver = false;
+    private int score;
+
+
 
     [SerializeField]
     private Text livesText;
+
+    [SerializeField]
+    private Text scoreText;
 
     [SerializeField]
     private GameObject GameOverMenu;
@@ -42,10 +53,29 @@ public class GameState : MonoBehaviour {
         }
     }
 
+    public int Score
+    {
+        get
+        {
+            return score;
+        }
+        set
+        {
+            this.score = value;
+
+            if (score <= 0)
+            {
+                this.score = 0;
+            }
+
+            scoreText.text = string.Format("<color=cyan>Score:</color> {0}", score);
+        }
+    }
 
 
 	// Use this for initialization
 	void Start () {
+        Score = 200;
         Lives = 5;
 
         enemyManagerScript = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
