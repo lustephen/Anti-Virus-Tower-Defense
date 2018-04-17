@@ -19,13 +19,21 @@ public class GameState : MonoBehaviour {
 
     private int score;
 
+    private int currency;
 
+    private int wave;
 
     [SerializeField]
     private Text livesText;
 
     [SerializeField]
     private Text scoreText;
+
+    [SerializeField]
+    private Text currencyText;
+
+    [SerializeField]
+    private Text waveText;
 
     [SerializeField]
     private GameObject GameOverMenu;
@@ -72,11 +80,38 @@ public class GameState : MonoBehaviour {
         }
     }
 
+    public int Currency
+    {
+        get
+        {
+            return Currency;
+        }
+        set
+        {
+            this.currency = value;
+            currencyText.text = string.Format("<color=lime>$</color> {0}", currency);
+        }
+    }
+
+    public int Wave
+    {
+        get
+        {
+            return wave;
+
+        }
+        set
+        {
+            this.wave = value;
+            waveText.text = string.Format("Wave: <color=cyan>{0}</color>", wave);
+        }
+    }
 
 	// Use this for initialization
 	void Start () {
         Score = 200;
         Lives = 5;
+        Currency = 100;
 
         enemyManagerScript = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         enemyManagerScript.Init();
